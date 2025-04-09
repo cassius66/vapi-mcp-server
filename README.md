@@ -2,12 +2,17 @@
 
 The Vapi [Model Context Protocol](https://modelcontextprotocol.com/) server allows you to integrate with Vapi APIs through function calling.
 
-## Usage with Claude Desktop
+## Claude Desktop Setup
 
-Add the following to your `claude_desktop_config.json`. See [here](https://modelcontextprotocol.io/quickstart/user) for more details.
+1. Open `Claude Desktop` and press `CMD + ,` to go to `Settings`.
+2. Click on the `Developer` tab.
+3. Click on the `Edit Config` button.
+4. This will open the `claude_desktop_config.json` file in your file explorer.
+5. Get your Vapi API key from the Vapi dashboard (<https://dashboard.vapi.ai/org/api-keys>).
+6. Add the following to your `claude_desktop_config.json` file. See [here](https://modelcontextprotocol.io/quickstart/user) for more details.
+7. Restart the Claude Desktop after editing the config file.
 
 ```json
-
 {
   "mcpServers": {
     "vapi-mcp-server": {
@@ -25,13 +30,24 @@ Add the following to your `claude_desktop_config.json`. See [here](https://model
 
 ```
 
+### Example Usage with Claude Desktop
+
+1. Create or import a phone number using the Vapi dashboard (<https://dashboard.vapi.ai/phone-numbers>).
+2. Create a new assistant using the existing 'Appointment Scheduler' template in the Vapi dashboard (<https://dashboard.vapi.ai/assistants>).
+3. Make sure to configure Claude Desktop to use the Vapi MCP server and restart the Claude Desktop app.
+4. Ask Claude with the following message:
+
+```md
+I wanna schedule an appointment, can you connect me with Riley assistant using my phone number +1234567890?
+```
+
 ## Remote SSE Connection
 
 To connect to Vapi's MCP server via Server-Sent Events (SSE) Transport:
 
-- Connect to `https://mcp.vapi.ai/sse` from any MCP client using SSE Transport.
-- Include your Vapi API key as a bearer token in the request headers.
-- Example header: `Authorization: Bearer your_vapi_api_key_here`.
+- Connect to `https://mcp.vapi.ai/sse` from any MCP client using SSE Transport
+- Include your Vapi API key as a bearer token in the request headers
+- Example header: `Authorization: Bearer your_vapi_api_key_here`
 
 This connection allows you to access Vapi's functionality remotely without running a local server.
 
