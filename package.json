@@ -4,11 +4,25 @@
   "version": "0.0.1",
   "main": "dist/index.js",
   "type": "module",
-  "author": "ramsrib",
-  "keywords": [],
+  "author": {
+    "name": "Vapi AI",
+    "url": "https://vapi.ai"
+  },
+  "contributors": [
+    {
+      "name": "ramsrib",
+      "url": "https://github.com/ramsrib"
+    }
+  ],
+  "homepage": "https://github.com/VapiAI/mcp-server#readme",
+  "bugs": {
+    "url": "https://github.com/VapiAI/mcp-server/issues"
+  },
+  "keywords": ["vapi", "mcp", "model-context-protocol", "ai", "claude", "voice-api", "tool-calling"],
   "repository": "https://github.com/VapiAI/mcp-server",
   "bin": {
-    "mcp-server": "dist/index.js"
+    "vapi-mcp-server": "dist/index.js",
+    "@vapi-ai/mcp-server": "dist/index.js"
   },
   "scripts": {
     "prepare": "npm run build",

@@ -1,11 +1,12 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { VapiClient, Vapi } from '@vapi-ai/server-sdk';
+
 import { CallInputSchema, GetCallInputSchema } from '../schemas/index.js';
 import {
   transformCallInput,
   transformCallOutput,
 } from '../transformers/index.js';
-import { createToolHandler, createParamsSchema } from './utils.js';
+import { createToolHandler } from './utils.js';
 
 export const registerCallTools = (
   server: McpServer,

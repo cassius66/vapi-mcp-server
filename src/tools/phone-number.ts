@@ -1,11 +1,8 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { VapiClient, Vapi } from '@vapi-ai/server-sdk';
+import { VapiClient } from '@vapi-ai/server-sdk';
+
 import { transformPhoneNumberOutput } from '../transformers/index.js';
-import {
-  createToolHandler,
-  createParamsSchema,
-  createIdParamSchema,
-} from './utils.js';
+import { createToolHandler } from './utils.js';
 import { GetPhoneNumberInputSchema } from '../schemas/index.js';
 
 export const registerPhoneNumberTools = (

@@ -1,5 +1,6 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { VapiClient } from '@vapi-ai/server-sdk';
+
 import { registerAssistantTools } from './assistant.js';
 import { registerCallTools } from './call.js';
 import { registerPhoneNumberTools } from './phone-number.js';
