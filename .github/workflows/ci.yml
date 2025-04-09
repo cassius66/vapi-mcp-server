@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Compile
-        run: npm install && npm run test
+        run: npm install && npm run test:unit
 
   publish:
     needs: [ compile, test ]
