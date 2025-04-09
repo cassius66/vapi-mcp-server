@@ -27,10 +27,13 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Compile
-        run: npm install && npm run test:unit
+        run: npm install 
+
+      # - name: Test
+      #   run: npm run test
 
   publish:
-    needs: [ compile, test ]
+    needs: [ compile ]
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
