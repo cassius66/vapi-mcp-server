@@ -125,6 +125,90 @@ async function main() {
         '\nString LLM Assistant:',
         JSON.stringify(stringLLMAssistant, null, 2)
       );
+
+      // List phone numbers
+      console.log('\nListing phone numbers...');
+      const phoneNumbersResponse = await mcpClient.callTool({
+        name: 'list_phone_numbers',
+        arguments: {},
+      });
+
+      const phoneNumbers = parseToolResponse(phoneNumbersResponse);
+
+      if (Array.isArray(phoneNumbers) && phoneNumbers.length > 0) {
+        console.log('Your phone numbers:');
+        phoneNumbers.forEach((phoneNumber: any) => {
+          console.log(`- ${phoneNumber.phoneNumber} (${phoneNumber.id})`);
+        });
+      } else {
+        console.log('No phone numbers found. Please add a phone number in the Vapi dashboard first.');
+      }
+
+      // List calls
+      console.log('\nListing calls...');
+      const callsResponse = await mcpClient.callTool({
+        name: 'list_calls',
+        arguments: {},
+      });
+
+      const calls = parseToolResponse(callsResponse);
+      
+      if (Array.isArray(calls) && calls.length > 0) {
+        console.log('Your calls:');
+        calls.forEach((call: any) => {
+          const createdAt = call.createdAt ? new Date(call.createdAt).toLocaleString() : 'N/A';
+          const customerPhone = call.customer?.phoneNumber || 'N/A';
+          const endedReason = call.endedReason || 'N/A';
+          
+          console.log(`- ID: ${call.id} | Status: ${call.status} | Created: ${createdAt} | Customer: ${customerPhone} | Ended reason: ${endedReason}`);
+        });
+      } else {
+        console.log('No calls found');
+      }
+
+      // Create a call
+      console.log('\nCreating a call...');
+      
+      if (Array.isArray(assistants) && assistants.length > 0 && 
+          Array.isArray(phoneNumbers) && phoneNumbers.length > 0) {
+        
+        const phoneNumberId = phoneNumbers[0].id;
+        const assistantId = assistants[0].id;
+        
+        console.log(`Creating a call using assistant (${assistantId}) and phone number (${phoneNumberId})...`);
+        
+        const createCallResponse = await mcpClient.callTool({
+          name: 'create_call',
+          arguments: {
+            assistantId: assistantId,
+            phoneNumberId: phoneNumberId,
+            customer: {
+              // phoneNumber: '+1234567890', // Replace with actual customer phone number
+            },
+            // Optional: schedule a call for the future
+            // scheduledAt: "2025-04-15T15:30:00Z"
+          },
+        });
+        
+        const createdCall = parseToolResponse(createCallResponse);
+        console.log('\nCall created:', JSON.stringify(createdCall, null, 2));
+        
+        // Get call details if we have the call ID
+        if (createdCall && createdCall.id) {
+          console.log(`\nGetting details for call ${createdCall.id}...`);
+          const callDetailsResponse = await mcpClient.callTool({
+            name: 'get_call',
+            arguments: {
+              callId: createdCall.id
+            },
+          });
+          
+          const callDetails = parseToolResponse(callDetailsResponse);
+          console.log('\nCall details:', JSON.stringify(callDetails, null, 2));
+        }
+      } else {
+        console.log('Cannot create call: Need both assistants and phone numbers.');
+      }
     } finally {
       console.log('\nDisconnecting from server...');
       await mcpClient.close();

@@ -9,8 +9,8 @@ export function parseToolResponse(response: any): any {
     )?.text;
 
     if (textContent) {
-      // Check if it's an error message first
-      if (textContent.startsWith('Error:') || textContent.includes('error')) {
+      // Check if it's an error message first - only if it starts with 'Error:'
+      if (textContent.startsWith('Error:')) {
         return { error: textContent };
       }
 

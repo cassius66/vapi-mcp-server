@@ -235,11 +235,13 @@ export const GetCallInputSchema = z.object({
 
 // ===== Phone Number Schemas =====
 
-export const PhoneNumberInputSchema = z.object({
-  areaCode: z.string().describe('Area code to search for'),
+
+export const GetPhoneNumberInputSchema = z.object({
+  phoneNumberId: z.string().describe('ID of the phone number to get'),
 });
 
 export const PhoneNumberOutputSchema = BaseResponseSchema.extend({
+  name: z.string().optional(),
   phoneNumber: z.string(),
   status: z.string(),
   capabilities: z
@@ -248,8 +250,4 @@ export const PhoneNumberOutputSchema = BaseResponseSchema.extend({
       voice: z.boolean().optional(),
     })
     .optional(),
-});
-
-export const GetPhoneNumberInputSchema = z.object({
-  phoneNumberId: z.string().describe('ID of the phone number to get'),
 });

@@ -152,9 +152,10 @@ export function transformPhoneNumberOutput(
 ): z.infer<typeof PhoneNumberOutputSchema> {
   return {
     id: phoneNumber.id,
+    name: phoneNumber.name,
     createdAt: phoneNumber.createdAt,
     updatedAt: phoneNumber.updatedAt,
-    phoneNumber: phoneNumber.phoneNumber,
+    phoneNumber: phoneNumber.number,
     status: phoneNumber.status,
   };
 }
