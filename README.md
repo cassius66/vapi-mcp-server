@@ -35,10 +35,18 @@ The Vapi [Model Context Protocol](https://modelcontextprotocol.com/) server allo
 1. Create or import a phone number using the Vapi dashboard (<https://dashboard.vapi.ai/phone-numbers>).
 2. Create a new assistant using the existing 'Appointment Scheduler' template in the Vapi dashboard (<https://dashboard.vapi.ai/assistants>).
 3. Make sure to configure Claude Desktop to use the Vapi MCP server and restart the Claude Desktop app.
-4. Ask Claude with the following message:
+4. Ask Claude to initiate or schedule a call. See examples below:
+
+**Example 1:** Request an immediate call
 
 ```md
-I wanna schedule an appointment, can you connect me with Riley assistant using my phone number +1234567890?
+I'd like to speak with my ShopHelper assistant to talk about my recent order. Can you have it call me at +1234567890?
+```
+
+**Example 2:** Schedule a future call
+
+```md
+I need to schedule a call with Mary assistant for next Tuesday at 3:00 PM. My phone number is +1555123456.
 ```
 
 ## Remote SSE Connection
@@ -120,3 +128,26 @@ npm test
 - [VAPI MCP Tool](https://docs.vapi.ai/tools/mcp)
 - [Model Context Protocol](https://modelcontextprotocol.com/)
 - [Claude Desktop](https://modelcontextprotocol.io/quickstart/user)
+
+## Supported Actions
+
+The Vapi MCP Server provides the following tools for integration:
+
+### Assistant Tools
+
+- `list_assistants`: Lists all Vapi assistants
+- `create_assistant`: Creates a new Vapi assistant
+- `get_assistant`: Gets a Vapi assistant by ID
+
+### Call Tools
+
+- `list_calls`: Lists all Vapi calls
+- `create_call`: Creates an outbound call
+- `get_call`: Gets details of a specific call
+
+> **Note:** The `create_call` action supports scheduling calls for immediate execution or for a future time.
+
+### Phone Number Tools
+
+- `list_phone_numbers`: Lists all Vapi phone numbers
+- `get_phone_number`: Gets details of a specific phone number
