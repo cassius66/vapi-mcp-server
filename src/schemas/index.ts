@@ -210,6 +210,10 @@ export const CallInputSchema = z.object({
     })
     .optional()
     .describe('Customer information'),
+  scheduledAt: z
+    .string()
+    .optional()
+    .describe('ISO datetime string for when the call should be scheduled (e.g. "2025-03-25T22:39:27.771Z")'),
 });
 
 export const CallOutputSchema = BaseResponseSchema.extend({
@@ -222,6 +226,7 @@ export const CallOutputSchema = BaseResponseSchema.extend({
       phoneNumber: z.string(),
     })
     .optional(),
+  scheduledAt: z.string().optional(),
 });
 
 export const GetCallInputSchema = z.object({

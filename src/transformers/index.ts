@@ -115,6 +115,13 @@ export function transformCallInput(
           },
         }
       : {}),
+    ...(input.scheduledAt
+      ? {
+          schedulePlan: {
+            earliestAt: input.scheduledAt,
+          },
+        }
+      : {}),
   };
 }
 
@@ -134,6 +141,7 @@ export function transformCallOutput(
           phoneNumber: call.customer.number || '',
         }
       : undefined,
+    scheduledAt: call.schedulePlan?.earliestAt,
   };
 }
 

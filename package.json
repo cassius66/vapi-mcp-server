@@ -1,8 +1,9 @@
 {
   "name": "@vapi-ai/mcp-server",
   "description": "Vapi MCP Server",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "author": {
     "name": "Vapi AI",
@@ -43,7 +44,9 @@
     "test:e2e": "NODE_OPTIONS=--experimental-vm-modules jest src/tests/mcp-server-e2e.test.ts"
   },
   "files": [
-    "dist"
+    "dist",
+    "dist/**/*.d.ts",
+    "dist/**/*.d.ts.map"
   ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.9.0",
